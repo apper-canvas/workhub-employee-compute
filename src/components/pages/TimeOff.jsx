@@ -69,10 +69,10 @@ const TimeOff = () => {
       setSubmitting(true);
       
       await timeOffService.create({
-        employeeId: "1",
-        startDate: formData.startDate,
-        endDate: formData.endDate,
-        reason: formData.reason.trim()
+employee_id_c: "1",
+        start_date_c: formData.startDate,
+        end_date_c: formData.endDate,
+        reason_c: formData.reason.trim()
       });
 
       toast.success("Time off request submitted successfully!");
@@ -88,7 +88,7 @@ const TimeOff = () => {
 
   const getStatusCounts = () => {
     return timeOffRequests.reduce((acc, request) => {
-      acc[request.status] = (acc[request.status] || 0) + 1;
+acc[request.status_c] = (acc[request.status_c] || 0) + 1;
       return acc;
     }, {});
   };

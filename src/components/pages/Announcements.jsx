@@ -46,15 +46,22 @@ const Announcements = () => {
   const getFilteredAnnouncements = () => {
     if (filter === "all") return announcements;
     if (filter === "unread") {
-      return announcements.filter(ann => !ann.readBy.includes("current-user"));
+return announcements.filter(ann => {
+        const readByList = ann.read_by_c ? ann.read_by_c.split('\n').filter(u => u.trim()) : [];
+        return !readByList.includes("current-user");
+      });
     }
-    return announcements.filter(ann => ann.priority.toLowerCase() === filter);
+return announcements.filter(ann => ann.priority_c && ann.priority_c.toLowerCase() === filter);
   };
 
   const getFilterCounts = () => {
-    const unreadCount = announcements.filter(ann => !ann.readBy.includes("current-user")).length;
+const unreadCount = announcements.filter(ann => {
+      const readByList = ann.read_by_c ? ann.read_by_c.split('\n').filter(u => u.trim()) : [];
+      return !readByList.includes("current-user");
+    }).length;
     const priorityCounts = announcements.reduce((acc, ann) => {
-      acc[ann.priority.toLowerCase()] = (acc[ann.priority.toLowerCase()] || 0) + 1;
+const priority = ann.priority_c ? ann.priority_c.toLowerCase() : 'medium';
+      acc[priority] = (acc[priority] || 0) + 1;
       return acc;
     }, {});
     

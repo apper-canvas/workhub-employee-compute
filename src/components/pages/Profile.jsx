@@ -39,16 +39,16 @@ const Profile = () => {
         timeEntryService.getByEmployeeId("1")
       ]);
 
-      setEmployee(employeeData);
+setEmployee(employeeData);
       setEditForm({
-        name: employeeData.name,
-        email: employeeData.email,
-        department: employeeData.department,
-        position: employeeData.position
+        name: employeeData.name_c,
+        email: employeeData.email_c,
+        department: employeeData.department_c,
+        position: employeeData.position_c
       });
 
       // Calculate stats
-      const totalHours = recentEntries.reduce((sum, entry) => sum + entry.hoursWorked, 0);
+const totalHours = recentEntries.reduce((sum, entry) => sum + (entry.hours_worked_c || 0), 0);
       const avgHours = recentEntries.length > 0 ? totalHours / recentEntries.length : 0;
 
       setTimeStats({
@@ -85,7 +85,12 @@ const Profile = () => {
 
     try {
       setSaving(true);
-      await employeeService.update("1", editForm);
+await employeeService.update("1", {
+        name_c: editForm.name,
+        email_c: editForm.email,
+        department_c: editForm.department,
+        position_c: editForm.position
+      });
       setEmployee(prev => ({ ...prev, ...editForm }));
       setEditing(false);
       toast.success("Profile updated successfully!");
@@ -98,10 +103,10 @@ const Profile = () => {
 
   const handleCancel = () => {
     setEditForm({
-      name: employee.name,
-      email: employee.email,
-      department: employee.department,
-      position: employee.position
+name: employee.name_c,
+      email: employee.email_c,
+      department: employee.department_c,
+      position: employee.position_c
     });
     setEditing(false);
   };
@@ -129,31 +134,31 @@ const Profile = () => {
           <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-primary-200 to-transparent rounded-bl-full opacity-50" />
           <div className="relative flex flex-col sm:flex-row items-start sm:items-center space-y-4 sm:space-y-0 sm:space-x-6">
             <Avatar
-              src={employee.avatar}
-              fallback={employee.name.split(" ").map(n => n[0]).join("")}
+src={employee.avatar_c}
+              fallback={employee.name_c ? employee.name_c.split(" ").map(n => n[0]).join("") : ""}
               size="xl"
               className="ring-4 ring-white shadow-lg"
             />
             <div className="flex-1">
               <h2 className="text-3xl font-bold text-secondary-900 mb-2">
-                {employee.name}
+                {employee.name_c}
               </h2>
               <div className="flex flex-wrap items-center gap-3 mb-3">
                 <Badge variant="primary" size="md">
-                  {employee.position}
+                  {employee.position_c}
                 </Badge>
                 <Badge variant="accent" size="md">
-                  {employee.department}
+                  {employee.department_c}
                 </Badge>
               </div>
               <div className="text-sm text-secondary-600">
                 <p className="flex items-center mb-1">
                   <ApperIcon name="Mail" size={16} className="mr-2" />
-                  {employee.email}
+                  {employee.email_c}
                 </p>
                 <p className="flex items-center">
                   <ApperIcon name="Calendar" size={16} className="mr-2" />
-                  Started {format(new Date(employee.startDate), "MMMM d, yyyy")}
+                  Started {format(new Date(employee.start_date_c), "MMMM d, yyyy")}
                 </p>
               </div>
             </div>
@@ -315,26 +320,26 @@ const Profile = () => {
             <div className="space-y-4">
               <div className="p-4 bg-secondary-50 rounded-lg">
                 <p className="text-sm font-medium text-secondary-600 mb-1">Employee ID</p>
-                <p className="text-lg font-semibold text-secondary-900">EMP-{employee.Id.toString().padStart(4, '0')}</p>
+<p className="text-lg font-semibold text-secondary-900">EMP-{employee.Id.toString().padStart(4, '0')}</p>
               </div>
               <div className="p-4 bg-secondary-50 rounded-lg">
                 <p className="text-sm font-medium text-secondary-600 mb-1">Department</p>
-                <p className="text-lg font-semibold text-secondary-900">{employee.department}</p>
+                <p className="text-lg font-semibold text-secondary-900">{employee.department_c}</p>
               </div>
               <div className="p-4 bg-secondary-50 rounded-lg">
                 <p className="text-sm font-medium text-secondary-600 mb-1">Position</p>
-                <p className="text-lg font-semibold text-secondary-900">{employee.position}</p>
+                <p className="text-lg font-semibold text-secondary-900">{employee.position_c}</p>
               </div>
             </div>
             <div className="space-y-4">
               <div className="p-4 bg-secondary-50 rounded-lg">
                 <p className="text-sm font-medium text-secondary-600 mb-1">Email Address</p>
-                <p className="text-lg font-semibold text-secondary-900 break-words">{employee.email}</p>
+                <p className="text-lg font-semibold text-secondary-900 break-words">{employee.email_c}</p>
               </div>
               <div className="p-4 bg-secondary-50 rounded-lg">
                 <p className="text-sm font-medium text-secondary-600 mb-1">Start Date</p>
                 <p className="text-lg font-semibold text-secondary-900">
-                  {format(new Date(employee.startDate), "MMMM d, yyyy")}
+                  {format(new Date(employee.start_date_c), "MMMM d, yyyy")}
                 </p>
               </div>
               <div className="p-4 bg-secondary-50 rounded-lg">

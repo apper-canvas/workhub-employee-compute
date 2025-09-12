@@ -75,10 +75,10 @@ const TimeClock = () => {
   }
 
   const { currentTimeEntry, weeklyHours, recentEntries } = timeData;
-  const isClockedIn = currentTimeEntry && !currentTimeEntry.clockOut;
+const isClockedIn = currentTimeEntry && !currentTimeEntry.clock_out_c;
 
   const calculateCurrentHours = () => {
-    if (!isClockedIn || !currentTimeEntry) return 0;
+if (!isClockedIn || !currentTimeEntry) return 0;
     const clockInTime = new Date(currentTimeEntry.clockIn);
     const now = new Date();
     return ((now - clockInTime) / (1000 * 60 * 60)).toFixed(2);
@@ -128,7 +128,7 @@ const TimeClock = () => {
         />
         <StatusCard
           title="Today's Hours"
-          value={isClockedIn ? `${calculateCurrentHours()}h` : `${currentTimeEntry?.hoursWorked || 0}h`}
+value={isClockedIn ? `${calculateCurrentHours()}h` : `${currentTimeEntry?.hours_worked_c || 0}h`}
           subtitle={isClockedIn ? "Hours worked (live)" : "Hours completed"}
           icon="Clock"
           variant="accent"
@@ -166,7 +166,7 @@ const TimeClock = () => {
                 <span className="font-medium">Clocked in at</span>
               </div>
               <p className="text-2xl font-bold text-success-800">
-                {format(new Date(currentTimeEntry.clockIn), "h:mm a")}
+{format(new Date(currentTimeEntry.clock_in_c), "h:mm a")}
               </p>
             </div>
           )}
@@ -206,10 +206,10 @@ const TimeClock = () => {
                 >
                   <div>
                     <p className="font-medium text-secondary-900">
-                      {format(new Date(entry.date), "MMM d, yyyy")}
+{format(new Date(entry.date_c), "MMM d, yyyy")}
                     </p>
                     <p className="text-sm text-secondary-600">
-                      {format(new Date(entry.clockIn), "h:mm a")} - {entry.clockOut ? format(new Date(entry.clockOut), "h:mm a") : "Active"}
+                      {format(new Date(entry.clock_in_c), "h:mm a")} - {entry.clock_out_c ? format(new Date(entry.clock_out_c), "h:mm a") : "Active"}
                     </p>
                   </div>
                   <div className="text-right">

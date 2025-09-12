@@ -48,7 +48,7 @@ const Schedule = () => {
 
   const getScheduleForDate = (date) => {
     const dateString = format(date, "yyyy-MM-dd");
-    return schedules.find(schedule => schedule.date === dateString);
+return schedules.find(schedule => schedule.date_c === dateString);
   };
 
   const navigateWeek = (direction) => {
@@ -190,17 +190,17 @@ const Schedule = () => {
                       <div className="flex items-center justify-center space-x-1 mb-1">
                         <ApperIcon name="Clock" size={14} className="text-primary-600" />
                         <span className="text-sm font-medium text-primary-800">
-                          {formatTime(daySchedule.startTime)} - {formatTime(daySchedule.endTime)}
+{formatTime(daySchedule.start_time_c)} - {formatTime(daySchedule.end_time_c)}
                         </span>
                       </div>
                       <p className="text-xs text-primary-600 font-medium">
-                        {daySchedule.position}
+{daySchedule.position_c}
                       </p>
                     </div>
                     <div className="flex items-center justify-center space-x-1">
                       <ApperIcon name="MapPin" size={12} className="text-secondary-400" />
                       <span className="text-xs text-secondary-600">
-                        {daySchedule.location}
+{daySchedule.location_c}
                       </span>
                     </div>
                   </div>
@@ -265,11 +265,11 @@ const Schedule = () => {
             </div>
             <div className="text-center p-4 bg-success-50 rounded-lg">
               <p className="text-2xl font-bold text-success-700">
-                {getWeekDays().reduce((total, day) => {
+{getWeekDays().reduce((total, day) => {
                   const schedule = getScheduleForDate(day);
                   if (schedule) {
-                    const start = new Date(`2000-01-01T${schedule.startTime}`);
-                    const end = new Date(`2000-01-01T${schedule.endTime}`);
+                    const start = new Date(`2000-01-01T${schedule.start_time_c}`);
+                    const end = new Date(`2000-01-01T${schedule.end_time_c}`);
                     return total + (end - start) / (1000 * 60 * 60);
                   }
                   return total;

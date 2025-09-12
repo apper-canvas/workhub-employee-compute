@@ -85,7 +85,7 @@ const Dashboard = () => {
   }
 
   const { currentTimeEntry, weeklyHours, todaySchedule, upcomingSchedules, recentAnnouncements } = dashboardData;
-  const isClockedIn = currentTimeEntry && !currentTimeEntry.clockOut;
+const isClockedIn = currentTimeEntry && !currentTimeEntry.clock_out_c;
 
   return (
     <div className="space-y-8 pb-20 lg:pb-8">
@@ -108,7 +108,7 @@ const Dashboard = () => {
               <span className="font-medium">Today's Schedule</span>
             </div>
             <p className="text-sm text-primary-100 mt-1">
-              {todaySchedule.startTime} - {todaySchedule.endTime} at {todaySchedule.location}
+{todaySchedule.start_time_c} - {todaySchedule.end_time_c} at {todaySchedule.location_c}
             </p>
           </div>
         )}
@@ -124,7 +124,7 @@ const Dashboard = () => {
         <StatusCard
           title="Current Status"
           value={isClockedIn ? "Clocked In" : "Clocked Out"}
-          subtitle={currentTimeEntry ? `Since ${format(new Date(currentTimeEntry.clockIn), "h:mm a")}` : "Ready to start"}
+subtitle={currentTimeEntry ? `Since ${format(new Date(currentTimeEntry.clock_in_c), "h:mm a")}` : "Ready to start"}
           icon={isClockedIn ? "Clock" : "Coffee"}
           variant={isClockedIn ? "success" : "default"}
         />
