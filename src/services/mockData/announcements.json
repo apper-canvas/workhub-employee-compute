@@ -1,0 +1,42 @@
+[
+  {
+    "Id": 1,
+    "title": "New Health Benefits Package Available",
+    "content": "We're excited to announce our enhanced health benefits package starting February 1st. The new plan includes dental, vision, and mental health coverage with lower deductibles. All employees are eligible and enrollment starts January 25th. Please review the detailed benefits guide in your employee portal and attend one of our information sessions next week.",
+    "publishDate": "2024-01-18T10:00:00Z",
+    "priority": "high",
+    "readBy": []
+  },
+  {
+    "Id": 2,
+    "title": "Office Renovation Update - Floor 2",
+    "content": "The renovation of Floor 2 is progressing well and is expected to be completed by January 30th. During this time, please use the alternate elevators and be mindful of construction noise during peak hours (10 AM - 3 PM). We appreciate your patience as we improve our workspace.",
+    "publishDate": "2024-01-17T15:30:00Z",
+    "priority": "medium",
+    "readBy": ["current-user"]
+  },
+  {
+    "Id": 3,
+    "title": "Team Building Event - February 10th",
+    "content": "Join us for our quarterly team building event at Riverside Park on February 10th from 1 PM to 5 PM. Activities include mini golf, barbecue lunch, and team challenges. RSVP by February 5th through the employee portal. Family members are welcome!",
+    "publishDate": "2024-01-16T09:15:00Z",
+    "priority": "low",
+    "readBy": []
+  },
+  {
+    "Id": 4,
+    "title": "IT System Maintenance - January 20th",
+    "content": "Our IT systems will undergo scheduled maintenance on January 20th from 6 PM to 10 PM. During this time, email, file servers, and the employee portal may be temporarily unavailable. Please plan accordingly and save your work before 6 PM.",
+    "publishDate": "2024-01-15T12:00:00Z",
+    "priority": "high",
+    "readBy": ["current-user"]
+  },
+  {
+    "Id": 5,
+    "title": "New Parking Regulations Effective January 22nd",
+    "content": "Starting January 22nd, new parking regulations will be in effect. Employee parking is now assigned by department, and visitor parking is limited to 2 hours. Please review your assigned parking section in the attached map and ensure you display your parking permit.",
+    "publishDate": "2024-01-14T08:45:00Z",
+    "priority": "medium",
+    "readBy": []
+  }
+]

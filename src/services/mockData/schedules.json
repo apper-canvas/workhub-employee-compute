@@ -1,0 +1,47 @@
+[
+  {
+    "Id": 1,
+    "employeeId": "1",
+    "date": "2024-01-18",
+    "startTime": "09:00",
+    "endTime": "17:30",
+    "position": "Marketing Specialist",
+    "location": "Office - Floor 3"
+  },
+  {
+    "Id": 2,
+    "employeeId": "1",
+    "date": "2024-01-19",
+    "startTime": "09:00",
+    "endTime": "17:30",
+    "position": "Marketing Specialist",
+    "location": "Office - Floor 3"
+  },
+  {
+    "Id": 3,
+    "employeeId": "1",
+    "date": "2024-01-22",
+    "startTime": "10:00",
+    "endTime": "18:00",
+    "position": "Marketing Specialist",
+    "location": "Remote Work"
+  },
+  {
+    "Id": 4,
+    "employeeId": "1",
+    "date": "2024-01-23",
+    "startTime": "08:30",
+    "endTime": "16:30",
+    "position": "Marketing Specialist",
+    "location": "Client Site - Downtown"
+  },
+  {
+    "Id": 5,
+    "employeeId": "1",
+    "date": "2024-01-24",
+    "startTime": "09:00",
+    "endTime": "17:30",
+    "position": "Marketing Specialist",
+    "location": "Office - Floor 3"
+  }
+]
