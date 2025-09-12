@@ -157,8 +157,8 @@ src={employee.avatar_c}
                   {employee.email_c}
                 </p>
                 <p className="flex items-center">
-                  <ApperIcon name="Calendar" size={16} className="mr-2" />
-                  Started {format(new Date(employee.start_date_c), "MMMM d, yyyy")}
+<ApperIcon name="Calendar" size={16} className="mr-2" />
+                  Started {employee.start_date_c && !isNaN(new Date(employee.start_date_c)) ? format(new Date(employee.start_date_c), "MMMM d, yyyy") : "Date not available"}
                 </p>
               </div>
             </div>
@@ -338,8 +338,8 @@ src={employee.avatar_c}
               </div>
               <div className="p-4 bg-secondary-50 rounded-lg">
                 <p className="text-sm font-medium text-secondary-600 mb-1">Start Date</p>
-                <p className="text-lg font-semibold text-secondary-900">
-                  {format(new Date(employee.start_date_c), "MMMM d, yyyy")}
+<p className="text-lg font-semibold text-secondary-900">
+                  {employee.start_date_c && !isNaN(new Date(employee.start_date_c)) ? format(new Date(employee.start_date_c), "MMMM d, yyyy") : "Date not available"}
                 </p>
               </div>
               <div className="p-4 bg-secondary-50 rounded-lg">

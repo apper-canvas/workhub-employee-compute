@@ -123,8 +123,8 @@ const isClockedIn = currentTimeEntry && !currentTimeEntry.clock_out_c;
       >
         <StatusCard
           title="Current Status"
-          value={isClockedIn ? "Clocked In" : "Clocked Out"}
-subtitle={currentTimeEntry ? `Since ${format(new Date(currentTimeEntry.clock_in_c), "h:mm a")}` : "Ready to start"}
+value={isClockedIn ? "Clocked In" : "Clocked Out"}
+subtitle={currentTimeEntry && currentTimeEntry.clock_in_c && !isNaN(new Date(currentTimeEntry.clock_in_c)) ? `Since ${format(new Date(currentTimeEntry.clock_in_c), "h:mm a")}` : "Ready to start"}
           icon={isClockedIn ? "Clock" : "Coffee"}
           variant={isClockedIn ? "success" : "default"}
         />
@@ -177,7 +177,7 @@ subtitle={currentTimeEntry ? `Since ${format(new Date(currentTimeEntry.clock_in_
                   {isClockedIn ? "Clocked in at" : "Last worked"}
                 </p>
                 <p className="font-semibold text-secondary-900">
-                  {format(new Date(currentTimeEntry.clockIn), "h:mm a")}
+{currentTimeEntry.clockIn && !isNaN(new Date(currentTimeEntry.clockIn)) ? format(new Date(currentTimeEntry.clockIn), "h:mm a") : "Invalid time"}
                 </p>
               </div>
             )}

@@ -46,9 +46,14 @@ const Schedule = () => {
     return days;
   };
 
-  const getScheduleForDate = (date) => {
-    const dateString = format(date, "yyyy-MM-dd");
-return schedules.find(schedule => schedule.date_c === dateString);
+const getScheduleForDate = (date) => {
+    if (!date || isNaN(date)) return null;
+    try {
+      const dateString = format(date, "yyyy-MM-dd");
+      return schedules.find(schedule => schedule.date_c === dateString);
+    } catch {
+      return null;
+    }
   };
 
   const navigateWeek = (direction) => {
@@ -56,11 +61,16 @@ return schedules.find(schedule => schedule.date_c === dateString);
     setSelectedDate(newDate);
   };
 
-  const formatTime = (timeString) => {
-    const [hours, minutes] = timeString.split(":");
-    const date = new Date();
-    date.setHours(parseInt(hours), parseInt(minutes));
-    return format(date, "h:mm a");
+const formatTime = (timeString) => {
+    if (!timeString || typeof timeString !== 'string') return "Invalid time";
+    try {
+      const [hours, minutes] = timeString.split(":");
+      const date = new Date();
+      date.setHours(parseInt(hours), parseInt(minutes));
+      return format(date, "h:mm a");
+    } catch {
+      return "Invalid time";
+    }
   };
 
   if (loading) {
@@ -267,10 +277,16 @@ return schedules.find(schedule => schedule.date_c === dateString);
               <p className="text-2xl font-bold text-success-700">
 {getWeekDays().reduce((total, day) => {
                   const schedule = getScheduleForDate(day);
-                  if (schedule) {
-                    const start = new Date(`2000-01-01T${schedule.start_time_c}`);
-                    const end = new Date(`2000-01-01T${schedule.end_time_c}`);
-                    return total + (end - start) / (1000 * 60 * 60);
+                  if (schedule && schedule.start_time_c && schedule.end_time_c) {
+                    try {
+                      const start = new Date(`2000-01-01T${schedule.start_time_c}`);
+                      const end = new Date(`2000-01-01T${schedule.end_time_c}`);
+                      if (!isNaN(start) && !isNaN(end)) {
+                        return total + (end - start) / (1000 * 60 * 60);
+                      }
+                    } catch {
+                      // Skip invalid dates
+                    }
                   }
                   return total;
                 }, 0)}h

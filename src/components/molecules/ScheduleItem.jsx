@@ -1,8 +1,8 @@
 import React from "react";
 import { format } from "date-fns";
+import ApperIcon from "@/components/ApperIcon";
 import Card from "@/components/atoms/Card";
 import Badge from "@/components/atoms/Badge";
-import ApperIcon from "@/components/ApperIcon";
 
 const ScheduleItem = ({ schedule, variant = "default" }) => {
   const formatTime = (timeString) => {
@@ -12,8 +12,11 @@ const ScheduleItem = ({ schedule, variant = "default" }) => {
     return format(date, "h:mm a");
   };
 
-  const getStatusVariant = () => {
-    const now = new Date();
+const getStatusVariant = () => {
+    if (!schedule.date || isNaN(new Date(schedule.date))) {
+      return "secondary";
+    }
+    
     const scheduleDate = new Date(schedule.date);
     const today = new Date();
     today.setHours(0, 0, 0, 0);
@@ -41,7 +44,7 @@ const ScheduleItem = ({ schedule, variant = "default" }) => {
           </div>
         </div>
         <Badge variant={getStatusVariant()} size="sm">
-          {format(new Date(schedule.date), "MMM d")}
+{schedule.date && !isNaN(new Date(schedule.date)) ? format(new Date(schedule.date), "MMM d") : "Invalid"}
         </Badge>
       </div>
 

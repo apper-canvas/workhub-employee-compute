@@ -69,7 +69,7 @@ const getPriorityVariant = (priority) => {
 
         <div className="flex items-center text-sm text-secondary-500 mb-3">
           <ApperIcon name="Calendar" className="mr-2" size={16} />
-          {format(new Date(announcement.publishDate), "MMM d, yyyy 'at' h:mm a")}
+{announcement.publishDate && !isNaN(new Date(announcement.publishDate)) ? format(new Date(announcement.publishDate), "MMM d, yyyy 'at' h:mm a") : "Date unknown"}
         </div>
 
         <motion.div

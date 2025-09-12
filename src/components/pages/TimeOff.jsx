@@ -192,7 +192,13 @@ acc[request.status_c] = (acc[request.status_c] || 0) + 1;
                   name="startDate"
                   value={formData.startDate}
                   onChange={handleInputChange}
-                  min={format(new Date(), "yyyy-MM-dd")}
+min={(() => {
+                    try {
+                      return format(new Date(), "yyyy-MM-dd");
+                    } catch {
+                      return new Date().toISOString().split('T')[0];
+                    }
+                  })()}
                   required
                 />
                 <Input
@@ -201,7 +207,13 @@ acc[request.status_c] = (acc[request.status_c] || 0) + 1;
                   name="endDate"
                   value={formData.endDate}
                   onChange={handleInputChange}
-                  min={formData.startDate || format(new Date(), "yyyy-MM-dd")}
+min={formData.startDate || (() => {
+                    try {
+                      return format(new Date(), "yyyy-MM-dd");
+                    } catch {
+                      return new Date().toISOString().split('T')[0];
+                    }
+                  })()}
                   required
                 />
               </div>

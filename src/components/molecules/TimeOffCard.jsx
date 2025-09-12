@@ -32,6 +32,9 @@ const TimeOffCard = ({ request }) => {
   };
 
   const getDuration = () => {
+if (!request.endDate || !request.startDate || isNaN(new Date(request.endDate)) || isNaN(new Date(request.startDate))) {
+      return "Duration unknown";
+    }
     const days = differenceInDays(new Date(request.endDate), new Date(request.startDate)) + 1;
     return `${days} day${days > 1 ? "s" : ""}`;
   };
@@ -56,7 +59,7 @@ const TimeOffCard = ({ request }) => {
           <div>
             <h3 className="font-semibold text-secondary-900">{request.reason}</h3>
             <p className="text-sm text-secondary-600">
-              Requested on {format(new Date(request.requestDate), "MMM d, yyyy")}
+Requested on {request.requestDate && !isNaN(new Date(request.requestDate)) ? format(new Date(request.requestDate), "MMM d, yyyy") : "Date unknown"}
             </p>
           </div>
         </div>
@@ -73,13 +76,13 @@ const TimeOffCard = ({ request }) => {
         <div className="flex items-center justify-between text-sm">
           <span className="text-secondary-600">Start Date:</span>
           <span className="font-medium text-secondary-900">
-            {format(new Date(request.startDate), "MMM d, yyyy")}
+{request.startDate && !isNaN(new Date(request.startDate)) ? format(new Date(request.startDate), "MMM d, yyyy") : "Invalid date"}
           </span>
         </div>
         <div className="flex items-center justify-between text-sm">
           <span className="text-secondary-600">End Date:</span>
-          <span className="font-medium text-secondary-900">
-            {format(new Date(request.endDate), "MMM d, yyyy")}
+<span className="font-medium text-secondary-900">
+            {request.endDate && !isNaN(new Date(request.endDate)) ? format(new Date(request.endDate), "MMM d, yyyy") : "Invalid date"}
           </span>
         </div>
       </div>
