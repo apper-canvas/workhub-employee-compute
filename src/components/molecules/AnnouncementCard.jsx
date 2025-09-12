@@ -9,7 +9,10 @@ const AnnouncementCard = ({ announcement, onMarkAsRead }) => {
   const [isExpanded, setIsExpanded] = useState(false);
   const isRead = announcement.readBy?.includes("current-user");
 
-  const getPriorityVariant = (priority) => {
+const getPriorityVariant = (priority) => {
+    if (!priority || typeof priority !== 'string') {
+      return "default";
+    }
     switch (priority.toLowerCase()) {
       case "high":
         return "error";
