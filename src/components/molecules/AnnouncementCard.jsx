@@ -89,9 +89,9 @@ const getPriorityVariant = (priority) => {
         </motion.div>
 
         {!isExpanded && (
-          <div className="text-sm text-secondary-500">
-            {announcement.content.substring(0, 120)}
-            {announcement.content.length > 120 && "..."}
+<div className="text-sm text-secondary-500">
+            {(announcement.content_c || '').substring(0, 120)}
+            {(announcement.content_c?.length > 120) && "..."}
           </div>
         )}
       </Card>
